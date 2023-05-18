@@ -2,12 +2,19 @@
     import Typewriter from '$lib/Typewriter.svelte';
 
     const names = ['funnyboy_roks', 'Hayden Pott', 'Funny', 'Hayden'];
+
+    const langChoices = ['rust', 'java', 'javascript'];
+    const lang = langChoices[Math.floor(Math.random() * langChoices.length)];
 </script>
+
+<svelte:head>
+    <title>funnyboy_roks</title>
+</svelte:head>
 
 <div>
 
     <h1 class="text-field"><Typewriter words={names} speed={150} /></h1>
-    <!--<h2 style="text-decoration: underline 1px solid white">
+    <h2 style="text-decoration: underline 1px solid white">
         <span style="color: var(--base00)">0</span>
         <span style="color: var(--base01)">1</span>
         <span style="color: var(--base02)">2</span>
@@ -24,11 +31,12 @@
         <span style="color: var(--base0D)">D</span>
         <span style="color: var(--base0E)">E</span>
         <span style="color: var(--base0F)">F</span>
-    </h2>-->
+    </h2>
 
     <p class="lead">
-        Hello! I'm Hayden Pott, a Computer Science student at Louisiana Tech University.
-        I have been proramming for about 5 years in many different languages, including Rust, Java, JavaScript/TypeScript, Python, and much more!
+        Hello! I'm Hayden Pott, a computer science student at Louisiana Tech University.
+        I have been proramming for about 5 years in many different languages,
+        including Rust, Java, JavaScript/TypeScript, Python, and much more!
     </p>
 
     <center>

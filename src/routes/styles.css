@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro');
+
 /* This is the base16 circus theme */
 /* Circus by Stephan Boyer (https://github.com/stepchowfun) and Esther Wang (https://github.com/ewang12) */
 
@@ -20,8 +22,6 @@
   --base0F: #b888e2;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro');
-
 span.b0 { color: var(--base00); }
 span.b1 { color: var(--base01); }
 span.b2 { color: var(--base02); }
@@ -40,7 +40,7 @@ span.be { color: var(--base0E); }
 span.bf { color: var(--base0F); }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   line-height: 1.5;
   font-weight: 400;
 
@@ -85,6 +85,10 @@ body {
 
 main {
     max-width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 h1 {
@@ -97,15 +101,23 @@ h1 {
   padding: 2em;
 }
 
+/*
 #app {
-  max-width: 1280px;
+    width: 100vw;
+}
+*/
+
+#app {
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
+
 p.lead {
     font-size: 1.5rem;
+    line-height: 1.6rem;
 }
 
 button {
