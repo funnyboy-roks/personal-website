@@ -14,6 +14,7 @@
 <div>
 
     <h1 class="text-field"><Typewriter words={names} speed={150} /></h1>
+    <!--
     <h2 style="text-decoration: underline 1px solid white">
         <span style="color: var(--base00)">0</span>
         <span style="color: var(--base01)">1</span>
@@ -32,6 +33,7 @@
         <span style="color: var(--base0E)">E</span>
         <span style="color: var(--base0F)">F</span>
     </h2>
+    -->
 
     <p class="lead">
         Hello! I'm Hayden Pott, a computer science student at Louisiana Tech University.

@@ -7,7 +7,7 @@
     let missingFields: Set<string> = new Set();
 
     const submit = () => {
-        alert('This form is currently not working, please join my Discord or send me an email.');
+        //alert('This form is currently not working, please join my Discord or send me an email.');
         const missing = new Set<string>();
         if (message.name === '') {
             missing.add('name');
@@ -23,6 +23,10 @@
 
         if (missingFields.size === 0) {
             // Good to send message
+            fetch('/contact', {
+                method: 'POST',
+                body: JSON.stringify(message),
+            }).then(() => console.log('sent', message));
         }
     };
 </script>
