@@ -21,24 +21,6 @@
 </script>
 
 <div>
-    <h2 style="text-decoration: underline 1px solid white">
-        <span style="color: var(--base00)">0</span>
-        <span style="color: var(--base01)">1</span>
-        <span style="color: var(--base02)">2</span>
-        <span style="color: var(--base03)">3</span>
-        <span style="color: var(--base04)">4</span>
-        <span style="color: var(--base05)">5</span>
-        <span style="color: var(--base06)">6</span>
-        <span style="color: var(--base07)">7</span>
-        <span style="color: var(--base08)">8</span>
-        <span style="color: var(--base09)">9</span>
-        <span style="color: var(--base0A)">A</span>
-        <span style="color: var(--base0B)">B</span>
-        <span style="color: var(--base0C)">C</span>
-        <span style="color: var(--base0D)">D</span>
-        <span style="color: var(--base0E)">E</span>
-        <span style="color: var(--base0F)">F</span>
-    </h2>
     {#if loading}
         <p>Loading Projects...</p>
     {:else if err}
