@@ -11,7 +11,7 @@
     <title>funnyboy_roks</title>
 </svelte:head>
 
-<div>
+<div class="container">
 
     <h1 class="text-field"><Typewriter words={names} speed={150} /></h1>
     <!--
