@@ -37,8 +37,8 @@
 
     <p class="lead">
         Hello! I'm Hayden Pott, a computer science student at Louisiana Tech University.
-        I have been proramming for about 5 years in many different languages,
-        including Rust, Java, JavaScript/TypeScript, Python, and much more!
+        I have been proramming for about 6 years in many different languages,
+        including Rust, C, JavaScript/TypeScript, Java, Python, and much more!
     </p>
 
     <center>
@@ -48,6 +48,8 @@
     <a href="https://blog.funnyboyroks.com">Blog</a>,
     <a href="/contact">Contact</a>,
     <a href="/projects">Projects</a>,
+    <a href="https://github.com/funnyboy-roks">GitHub</a>,
+    <a href="https://linkedin.com/in/hayden-pott">LinkedIn</a>,
 &rbrace;
         </pre>
     </center>
