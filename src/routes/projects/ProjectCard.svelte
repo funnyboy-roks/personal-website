@@ -96,8 +96,8 @@ on:keypress={() => details = !details}
     {:else}
     source: <span class="bb">"<a href="{project.source}">{project.source}</a>"</span>,
     status: <span class="bd">ProjectStatus</span><span class="bf">::</span>{project.status},
-    languages: <span class="ba">&</span>[{@html formatLangs(project.languages)}],
-    links: <span class="ba">&</span>[{@html formatLinks(project.links)}],
+    languages: <span class="ba">&</span>[{@html formatLangs(project.languages)}],{#if project.links.length}
+    links: <span class="ba">&</span>[{@html formatLinks(project.links)}],{/if}
     tags: <span class="ba">&</span>[{@html formatTags(project.tags)}],
 {/if}
 };
@@ -130,16 +130,14 @@ on:keypress={() => details = !details}
         color: var(--text-colour);
         font-family: 'Anonymous Pro', monospace;
         white-space: pre-wrap;
-        padding: 2rem;
-
     }
 
     button {
-        transition: 200ms ease-in-out transform, 200ms linear outline;
+        transition: 100ms ease-in-out transform, 100ms linear outline;
     }
 
-    button.collapsed:hover, button.collapsed:focus {
-        transform: scale(1.3);
+    button.collapsed:hover {
+        transform: scale(1.1);
         outline: 1px solid var(--base03);
     }
 

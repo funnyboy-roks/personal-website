@@ -29,7 +29,9 @@
     {:else}
         <div class="projects">
         {#each projects as project, i (i)}
-            <ProjectCard {project} />
+            <div class="project">
+                <ProjectCard {project} />
+            </div>
         {:else}
             <p>Found no projects!</p>
         {/each}
@@ -47,11 +49,15 @@
         font-family: 'Anonymous Pro', monospace;
     }
 
+    .project {
+        max-width: 45%;
+    }
+
     .projects {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-evenly;
         /*margin: auto 0;*/
     }
 
