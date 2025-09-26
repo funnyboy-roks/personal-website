@@ -1,38 +1,42 @@
 <script lang="ts">
-import { onDestroy } from "svelte";
+	import { browser } from '$app/environment';
+    import { onDestroy } from 'svelte';
 
-  export let words: string[];
-  export let speed: number = 500;
+    const { words, speed = 500 }: { words: string[], speed: number } = $props();
 
-  let value = '';
+	let value = $state('');
 
-  let index = 0;
-  let clearing = false;
-  let selectedWord = words[index];
-  let pause = 0;
-  let interval = setInterval(() => {
-    if (pause) return --pause;
-    if (!clearing) {
-        if (!selectedWord || !selectedWord[0]) {
-            if (!pause) pause = 5;
-            clearing = true;
-        }
-        value += selectedWord[0] ?? '';
-        selectedWord = selectedWord.substring(1);
-    } else {
-        value = value.substring(0, value.length - 1);
-        if (value === '') {
-            index += 1;
-            index %= words.length;
-            selectedWord = words[index];
-            clearing = false;
-        }
-    }
-  }, speed);
+	let index = 0;
+	let clearing = false;
+	let selectedWord = words[index];
+	let pause = 0;
+	let interval = setInterval(() => {
+		if (pause) return --pause;
+		if (!clearing) {
+			if (!selectedWord || !selectedWord[0]) {
+				if (!pause) pause = 5;
+				clearing = true;
+			}
+			value += selectedWord[0] ?? '';
+			selectedWord = selectedWord.substring(1);
+		} else {
+			value = value.substring(0, value.length - 1);
+			if (value === '') {
+				index += 1;
+				index %= words.length;
+				selectedWord = words[index];
+				clearing = false;
+			}
+		}
+	}, speed);
 
-  onDestroy(() => {
-    clearInterval(interval);
-  });
+	onDestroy(() => {
+		clearInterval(interval);
+	});
 </script>
 
-{ value }
+{#if browser}
+{value}
+{:else}
+{words[0]}
+{/if}

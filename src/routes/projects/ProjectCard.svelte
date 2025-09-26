@@ -82,18 +82,18 @@
         return out;
     }
 </script>
+
 <div>
-<pre class="{details ? 'open' : 'collapsed'}"><button
+<button
 class="{details ? 'open' : 'collapsed'}"
-on:click={() => details = !details}
-on:keypress={() => details = !details}
-     ><span class="bf">let</span> {rustify(project.title)} = Project &lbrace;
-    <span class="b4">{#if details}// Click for fewer details{:else}// Click for more details{/if}</span>
+onclick={() => details = !details}
+onkeypress={() => details = !details}>
+<pre class="border-4 border-b4 hover:border-b6 p-4 rounded-xl text-left {details ? 'open' : 'collapsed'}"
+     ><span class="bf">let</span> {rustify(project.title)} = Project &lbrace; <span class="b4">{#if details}
+    // Click for fewer details{/if}</span>
     title: {@html renderString(project.title, false)},
-    description: {@html renderString(project.description, false)},
-    {#if !details}
-    .. 
-    {:else}
+    description: {@html renderString(project.description, false)},{#if !details}
+    .. <span class="b4">// Click for more details</span>{:else}
     source: <span class="bb">"<a href="{project.source}">{project.source}</a>"</span>,
     status: <span class="bd">ProjectStatus</span><span class="bf">::</span>{project.status},
     languages: <span class="ba">&</span>[{@html formatLangs(project.languages)}],{#if project.links.length}
@@ -101,9 +101,19 @@ on:keypress={() => details = !details}
     tags: <span class="ba">&</span>[{@html formatTags(project.tags)}],
 {/if}
 };
-</button>
 </pre>
+</button>
 </div>
+<!--
+<div class="border-4 border-b4 p-4 rounded-xl text-left">
+<pre>
+<span class="b9 prefix">/// {project.description}</span>
+<span class="bf">fn</span> <span class="bd">{rustify(project.title)}</span>() &lbrace;
+    <span class="bf">let</span> title = {@html renderString(project.title, false)};
+&rbrace;
+</pre>
+</div> -->
+
 <style>
     button { /* Reset (ish) the button styles */
         border-radius: 0;
@@ -121,6 +131,7 @@ on:keypress={() => details = !details}
         margin: none;
         width: 100%;
         height: 100%;
+        box-sizing: content-box;
     }
 
     pre {
@@ -130,15 +141,8 @@ on:keypress={() => details = !details}
         color: var(--text-colour);
         font-family: 'Anonymous Pro', monospace;
         white-space: pre-wrap;
-    }
 
-    button {
-        transition: 100ms ease-in-out transform, 100ms linear outline;
-    }
-
-    button.collapsed:hover {
-        transform: scale(1.1);
-        outline: 1px solid var(--base03);
+        transition: 100ms ease-in-out border;
     }
 
     .collapsed {

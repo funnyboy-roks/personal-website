@@ -2,16 +2,13 @@
 	import Typewriter from '$lib/Typewriter.svelte';
 
 	const names = ['funnyboy_roks', 'Hayden Pott', 'Funny', 'Hayden'];
-
-	const langChoices = ['rust', 'java', 'javascript'];
-	const lang = langChoices[Math.floor(Math.random() * langChoices.length)];
 </script>
 
 <svelte:head>
 	<title>funnyboy_roks</title>
 </svelte:head>
 
-<div class="container">
+<div class="flex flex-col gap-4 container">
 	<h1 class="text-field"><Typewriter words={names} speed={150} /></h1>
 	<!--
     <h2 style="text-decoration: underline 1px solid white">
@@ -51,7 +48,6 @@
     <a href="/contact">Contact</a>,
     <a href="/projects">Projects</a>,
     <a href="https://github.com/funnyboy-roks">GitHub</a>,
-    <a href="https://linkedin.com/in/hayden-pott">LinkedIn</a>,
 &rbrace;
         </pre>
 	</center>
