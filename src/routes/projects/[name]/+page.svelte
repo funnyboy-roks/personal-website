@@ -79,6 +79,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>funnyboy_roks | {project.title} </title>
+</svelte:head>
+
 <div class="w-screen flex flex-row">
     <pre class="p-4 text-4xl text-left w-1/3 max-w-1/3 whitespace-normal border-r-4 border-b4 mr-8 pr-8">
     <span class="b9">// Other projects</span>

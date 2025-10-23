@@ -16,7 +16,7 @@
         page.route.id
             ?.replace(/^\//, '')
             .split(/[-_ ]/)
-            .map(x => x[0].toUpperCase() + x.substring(1))
+            .map(x => x.length ? x[0].toUpperCase() + x.substring(1) : '')
     );
 
     const pagesCount = Object.keys(pages).length;
