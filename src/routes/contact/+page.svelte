@@ -20,13 +20,6 @@
         to email me at <a href="mailto:{email}">{email}</a>,
     </p>
 
-    <noscript>
-        <p class="py-2 mt-8 border-4 rounded-sm border-b4 mx-16 pl-2 lead">
-            JavaScript must be enabled to use the contact form.
-            Feel free to send me an <a href="mailto:{email}">email</a> or join my <a href="/discord">Discord server</a>.
-        </p>
-    </noscript>
-
     {#if form?.success}
         <p class="py-2 mt-8 border-4 rounded-sm border-b4 mx-16 pl-2 lead">
             Message sent! <br />
