@@ -12,11 +12,19 @@
         'Projects': '/projects',
     };
 
+    const pageTitle = $derived(
+        page.route.id
+            ?.replace(/^\//, '')
+            .split(/[-_ ]/)
+            .map(x => x[0].toUpperCase() + x.substring(1))
+    );
+
     const pagesCount = Object.keys(pages).length;
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+    <title>funnyboy_roks | {pageTitle || 404} </title>
 </svelte:head>
 
 <main>
