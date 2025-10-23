@@ -1,31 +1,9 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
-	import { SvelteSet } from "svelte/reactivity";
+	import type { PageProps } from "./$types";
     const email = 'me@haydenpott.com';
 
-    let message = $state({
-        name: '',
-        contact: '',
-        content: '',
-    });
-    let missingFields = new SvelteSet<keyof typeof message>();
-
-    const submit = (event: SubmitEvent) => {
-        event.preventDefault();
-        missingFields.clear();
-        if (message.name    === '') missingFields.add('name');
-        if (message.contact === '') missingFields.add('contact');
-        if (message.content === '') missingFields.add('content');
-
-        if (missingFields.size === 0) {
-            // Good to send message
-            fetch('/contact', {
-                method: 'POST',
-                body: JSON.stringify(message),
-            }).then(() => console.log('sent', message));
-        }
-    };
-
+    let { data, form }: PageProps = $props();
 </script>
 
 <div class="flex flex-col gap-4 container">
@@ -34,7 +12,7 @@
     <p class="lead">
         If you need help or have a suggestion for one of my plugins, websites, or tools,
         please create an issue on the correct GitHub repository, or join my
-        <a href="https://api.funnyboyroks.com/discord">Discord server</a>.
+        <a href="/discord">Discord server</a>.
     </p>
 
     <p class="lead">
@@ -45,24 +23,47 @@
     <noscript>
         <p class="py-2 mt-8 border-4 rounded-sm border-b4 mx-16 pl-2 lead">
             JavaScript must be enabled to use the contact form.
-            Feel free to send me an <a href="mailto:{email}">email</a> or join my <a href="https://api.funnyboyroks.com/discord">Discord server</a>.
+            Feel free to send me an <a href="mailto:{email}">email</a> or join my <a href="/discord">Discord server</a>.
         </p>
     </noscript>
 
-    {#if browser} <!-- whether js is enabled -->
-    <form onsubmit={submit}>
+    {#if form?.success}
+        <p class="py-2 mt-8 border-4 rounded-sm border-b4 mx-16 pl-2 lead">
+            Message sent! <br />
+            I'll get back to you as soon as I can.
+        </p>
+    {:else if form?.error === 'internal'}
+        <p class="py-2 mt-8 border-4 rounded-sm border-b4 mx-16 pl-2 lead">
+            There was an error sending the message.  
+            Feel free to send me an <a href="mailto:{email}">email</a> or join my <a href="/discord">Discord server</a>.
+        </p>
+    {:else}
+    <form method="POST">
         <center>
-            <pre id="msg"><!-- These lines be kinda long because <pre> is kinda stupid --><span class="bf">let</span> msg = Message &lbrace; {#if missingFields.has('name')}
-    <span class="b9 error">/// Required Field</span>{/if}
-    name:    <span class="bb">"</span><input type="text" class="bb" bind:value={message.name} placeholder="Enter name"/><span class="bb">"</span>,{#if missingFields.has('contact')}
-    <span class="b9 error">/// Required Field</span>{/if}
-    contact: <span class="bb">"</span><input type="text" class="bb" bind:value={message.contact} placeholder="Enter contact info"/><span class="bb">"</span>,{#if missingFields.has('content')}
-    <span class="b9 error">/// Required Field</span>{/if}
-    content: <span class="bb">r#"</span>
-    <textarea cols="42" rows="4" bind:value={message.content}></textarea>
-    <span class="bb">"#</span>,
-&rbrace;;
-msg.<span class="bd"><button id="submit" type="submit">send</button></span>()<span class="b9">?</span>; <span class="b4">// Click `send` to send message</span>
+            <pre id="msg" class="whitespace-normal">
+                <span class="bf">let</span> msg = Message &lbrace; <br />
+                {#if form?.error === 'missing-fields' && form.missingFields.includes('name')}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="b8 error ">/// Required Field</span> <br />
+                {/if}
+                &nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="bb">"</span
+                    ><input type="text" class="bb" name="name" value={form?.name || ''} placeholder="Enter name"
+                    /><span class="bb">"</span>, <br />
+                {#if form?.error === 'missing-fields' && form.missingFields.includes('contact')}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="b8 error">/// Required Field</span> <br />
+                {/if}
+                &nbsp;&nbsp;&nbsp;&nbsp;contact:&nbsp;
+                    <span class="bb">"</span
+                    ><input type="text" class="bb" name="contact" value={form?.contact || ''} placeholder="Enter contact info"
+                    /><span class="bb">"</span>, <br />
+                {#if form?.error === 'missing-fields' && form.missingFields.includes('content')}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="b8 error">/// Required Field</span> <br />
+                {/if}
+                &nbsp;&nbsp;&nbsp;&nbsp;content: <span class="bb">r#"</span> <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<textarea cols="42" rows="4" name="content" value={form?.content || ''}></textarea> <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="bb">"#</span>, <br />
+                    &rbrace;;<br />
+                msg.<span class="bd"><button id="submit" type="submit">send</button></span>()<span class="b9">?</span>; <span class="b4">// Click `send` to send message</span>
             </pre>
         </center>
     </form>
