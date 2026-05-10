@@ -53,6 +53,16 @@ export const actions = {
             } as const);
         }
 
+        // For some reason, so much spam sets their contact information as "traffic"?
+        if (contact === 'traffic') {
+            return fail(400, {
+                name,
+                contact,
+                content,
+                error: 'invalid-contact',
+            } as const);
+        }
+
         let success = false;
         try {
             success = await send(name, contact, content);

@@ -40,14 +40,17 @@
                 {/if}
                 &nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;&nbsp;&nbsp;&nbsp;
                     <span class="bb">"</span
-                    ><input type="text" class="bb" name="name" value={form?.name || ''} placeholder="Enter name"
+                    ><input type="text" autocomplete="name" class="bb" name="name" value={form?.name || ''} placeholder="Enter name"
                     /><span class="bb">"</span>, <br />
                 {#if form?.error === 'missing-fields' && form.missingFields.includes('contact')}
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="b8 error">/// Required Field</span> <br />
                 {/if}
+                {#if form?.error === 'invalid-contact'}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="b8 error ">/// Contact may not be '{form.contact}'.</span> <br />
+                {/if}
                 &nbsp;&nbsp;&nbsp;&nbsp;contact:&nbsp;
                     <span class="bb">"</span
-                    ><input type="text" class="bb" name="contact" value={form?.contact || ''} placeholder="Enter contact info"
+                    ><input type="text" autocomplete="email impp" class="bb" name="contact" value={form?.contact || ''} placeholder="Enter contact info"
                     /><span class="bb">"</span>, <br />
                 {#if form?.error === 'missing-fields' && form.missingFields.includes('content')}
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="b8 error">/// Required Field</span> <br />
