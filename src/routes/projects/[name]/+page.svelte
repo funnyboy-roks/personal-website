@@ -83,18 +83,18 @@
     <title>funnyboy_roks | {project.title} </title>
 </svelte:head>
 
-<div class="w-screen flex flex-row">
-    <pre class="p-4 text-4xl text-left w-1/3 max-w-1/3 whitespace-normal border-r-4 border-b4 mr-8 pr-8">
+<div class="w-[80vw] flex">
+    <pre class="p-4 text-4xl text-left w-1/3 max-w-1/3 whitespace-normal mr-8 pr-8 flex flex-col justify-center">
     <span class="b9">// Other projects</span>
-    {#each Object.keys(PROJECTS) as key, i (i)}
-        <ul>
+    <ul>
+        {#each Object.keys(PROJECTS) as key, i (i)}
             <li>
                 <a href="/projects/{key}">
                     projects[{@html renderString(key)}]
                 </a>
             </li>
-        </ul>
-    {/each}
+        {/each}
+    </ul>
     </pre>
     <pre class="p-4 text-4xl text-left flex-grow max-w-2/3 text-wrap whitespace-normal">
         projects.<span class="bd">insert</span>({@html renderString(key)}, Project &lbrace;<br />
